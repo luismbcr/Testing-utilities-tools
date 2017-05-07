@@ -2,4 +2,9 @@
 
 import compare from './modules/compare';
 
-console.log(compare.example());
+
+var original = 'Hello I am';
+var newOne = 'Hello';
+
+compare.textDiff(original,newOne);
+
