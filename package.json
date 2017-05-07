@@ -11,7 +11,10 @@
     "type": "git",
     "url": "https://github.com/luismbcr/node-testing-tool/"
   },
-  "author": "",
+  "author": "luismbcr",
+  "contributors": [{
+    "name": "david19rp"
+  }],
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.24.1",
