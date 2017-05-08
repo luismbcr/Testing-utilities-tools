@@ -2,6 +2,7 @@
 import menu from 'console-menu';
 import readline from 'readline';
 import compare from './compare';
+import configFile from '../config';
 
 module.exports = {
     start: ()=>{
@@ -39,6 +40,9 @@ module.exports = {
                     case '1': 
                         module.exports.comparePages();
                         break;
+                    case '2': 
+                        module.exports.comparePages(true);
+                        break;
                     default:
                         console.log('Exit :)');
                 }
@@ -47,21 +51,34 @@ module.exports = {
             }
         });
     },
-    comparePages: ()=>{
-        let urls = [
-        'https://painter-projects-71848.netlify.com/',
-        'http://localhost:3000/'];
-
+    comparePages: (urls=false)=>{
         const askId = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-        terminal:false
+            input: process.stdin,
+            output: process.stdout,
+            terminal:false
         });
+        if(urls){
+            askId.question('Enter production url:(with http/https): ', (url1) => {
+                askId.question('Enter the localhost url:(with http/https): ', (url2)=>{
+                    askId.question('Enter the ID or Class of the content you want yo update: ', (id) => {
+                        compare.pages([url1,url2],id);
+                        askId.close();
+                    });
+                });
+            });
+        }else{
+            configFile.urls;
 
-        askId.question('Enter the ID or Class of the content you want yo update: ', (id) => {
-        compare.pages(urls,id);
-        askId.close();
-        });
+
+
+            askId.question('Enter the ID or Class of the content you want yo update: ', (id) => {
+                id = id.length == 0 ? 'html' : id; 
+                console.log(id);
+                compare.pages(configFile.urls,id);
+                askId.close();
+            });
+        }
+        
     }
    
 
