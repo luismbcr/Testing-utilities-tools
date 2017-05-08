@@ -73,7 +73,6 @@ module.exports = {
 
             askId.question('Enter the ID or Class of the content you want yo update: ', (id) => {
                 id = id.length == 0 ? 'html' : id; 
-                console.log(id);
                 compare.pages(configFile.urls,id);
                 askId.close();
             });
