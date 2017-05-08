@@ -1,10 +1,5 @@
 'use strict';
 
-import compare from './modules/compare';
+import menu from './modules/menu';
 
-
-let urls = [
-'http://localhost:3000/',
-'http://localhost:3000/'];
-
-compare.pages(urls);
+menu.start();
