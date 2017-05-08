@@ -1,10 +1,5 @@
 'use strict';
 
-import compare from './modules/compare';
+import menu from './modules/menu';
 
-
-var original = 'Hello I am';
-var newOne = 'Hello';
-
-compare.textDiff(original,newOne);
-
+menu.start();

@@ -24,7 +24,10 @@
     "babel-register": "^6.24.1"
   },
   "dependencies": {
+    "cheerio": "^0.22.0",
     "colors": "^1.1.2",
-    "diff": "^3.2.0"
+    "console-menu": "^0.1.0",
+    "diff": "^3.2.0",
+    "request": "^2.81.0"
   }
 }

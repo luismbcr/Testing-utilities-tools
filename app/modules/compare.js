@@ -1,5 +1,7 @@
 import 'colors';
 import * as jsDiff from 'diff';
+import request from 'request';
+import cheerio from 'cheerio';
 
 module.exports = {
     textDiff: (a,b)=>{
@@ -15,5 +17,23 @@ module.exports = {
             process.stderr.write(part.value[color]);
         });
         process.stderr.write('\n');
+    },
+    pages : (urls,id='html')=>{
+         let content=[];
+        request(urls[0], (error, response, body)=> {
+            if(response.statusCode == 200){
+                let $ = cheerio.load(body);
+                content.push($(id).text());
+            };
+            request(urls[1], (error, response, body)=> {
+                if(response.statusCode == 200){
+                    let $ = cheerio.load(body);
+                    content.push($(id).text());
+                }
+                module.exports.textDiff(content[0], content[1]);
+            });
+            
+        });
+        
     }
 }
