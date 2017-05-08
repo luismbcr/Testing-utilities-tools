@@ -3,8 +3,8 @@
 import compare from './modules/compare';
 
 
-var original = 'Hello I am';
-var newOne = 'Hello';
+let urls = [
+'http://localhost:3000/',
+'http://localhost:3000/'];
 
-compare.textDiff(original,newOne);
-
+compare.pages(urls);
