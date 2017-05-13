@@ -4,6 +4,7 @@ import request from 'request';
 import cheerio from 'cheerio';
 
 module.exports = {
+   
     textDiff: (a,b)=>{
         let diff = jsDiff.diffWords(a, b);
         console.log('--- Content Comparison Result ---'.bgBlue.white);
@@ -18,22 +19,43 @@ module.exports = {
         });
         process.stderr.write('\n');
     },
+    getHtml: (url = '',id,cb)=>{
+        request(url, (error, response, body)=> {
+            let content = {};
+            if(error){
+                content = {status:0,content:`ERROR ${error.errno} code: with ${url}`};
+            }
+            else if(response.statusCode == 200){
+                let $ = cheerio.load(body);
+                content = {status:1,content: $(id).text()};
+            }
+            cb(content);
+        });
+    },
+    checkHtml: (html, cb)=>{
+        if( html.status == 0){
+                console.log(html.content);
+            }
+            else
+            {
+                cb(html.content);
+            }      
+    },
     pages : (urls,id='html')=>{
          let content=[];
-        request(urls[0], (error, response, body)=> {
-            if(response.statusCode == 200){
-                let $ = cheerio.load(body);
-                content.push($(id).text());
-            };
-            request(urls[1], (error, response, body)=> {
-                if(response.statusCode == 200){
-                    let $ = cheerio.load(body);
-                    content.push($(id).text());
-                }
-                module.exports.textDiff(content[0], content[1]);
-            });
-            
-        });
-        
+         module.exports.getHtml(urls[0],id, (html)=>{
+             module.exports.checkHtml(html,(html)=>{
+                 content.push(html);
+                module.exports.getHtml(urls[0],id, (html)=>{
+                    module.exports.checkHtml(html,(html)=>{
+                        content.push(html);
+                        module.exports.textDiff(content[0], content[1]);
+                    });
+                });
+             });
+         });
+      
+         
+      
     }
 }
