@@ -86,7 +86,7 @@ module.exports = {
     linksMenu: ()=>{
         menu([
             { hotkey: '1', title: 'Check links from a URLS', selected: true },
-            { hotkey: '2', title: 'Check Target of URL (_blank : Specially for emails)' },
+            { hotkey: '2', title: 'Check Target of URL (_blank : Especially for emails)' },
             { hotkey: '3', title: 'Exit' }
         ], {
             header: 'Links Testing',
@@ -102,11 +102,13 @@ module.exports = {
                     case '1': 
                             askId.question('Please enter the url: ',(url)=>{
                                 links.testUrl(url);
+                                askId.close();
                             });
                         break;
                     case '2': 
                         askId.question('Please enter the url: ',(url)=>{
                             links.checkTarget(url);
+                            askId.close();
                         });
                       
                         break;
