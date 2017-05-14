@@ -1,6 +1,6 @@
-# Node Testing Tool
+# Node based testing Testing utilities tools
 
-Node based testing tool that allows to compare content and test links. 
+Node based testing utilities tool that allow to compare content and test links. 
 
 #### Installation
 
