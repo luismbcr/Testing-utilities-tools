@@ -22,11 +22,8 @@ module.exports = {
                             console.log($link.red+ ' - Fail'.red);
                         }
                     });
-                });
-        
-                
-            }
-            
+                });          
+            } 
         });
     },
     checkTarget: (url)=>{
