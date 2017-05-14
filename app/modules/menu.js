@@ -50,9 +50,11 @@ module.exports = {
                         break;
                     default:
                         console.log('Exit :)');
+                        process.exit()
                 }
             } else {
                 console.log('You cancelled the menu.');
+                process.exit()
             }
         });
     },
@@ -109,11 +111,13 @@ module.exports = {
                         askId.question('Please enter the url: ',(url)=>{
                             links.checkTarget(url);
                             askId.close();
+                            process.exit()
                         });
                       
                         break;
                     default:
                         console.log('Exit :)');
+                        process.exit()
                 }
             } else {
                 console.log('You cancelled the menu.');
