@@ -18,7 +18,7 @@ module.exports = {
                     case 'html':
                         content = {status:1,content: $(id).html()};
                     default:
-                        content = {status:1,content: $(id)};
+                        content = {status:1,content: body};
                 }
             }
             cb(content);
